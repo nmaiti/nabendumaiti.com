@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Layout } from '@components';
-import { IconBookmark } from '@components/icons';
+import { IconPost } from '@components/icons';
 
 const StyledMainContainer = styled.main`
   & > header {
@@ -171,7 +171,7 @@ const BlogPage = ({ location, data }) => {
                   <div className="post__inner">
                     <header>
                       <div className="post__icon">
-                        <IconBookmark />
+                        <IconPost />
                       </div>
                       <h5 className="post__title">
                         <Link to={slug}>{title}</Link>

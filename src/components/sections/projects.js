@@ -219,8 +219,8 @@ const Projects = () => {
       <div className="project-inner">
         <header>
           <div className="project-top">
-            <div className="folder">
-              <Icon name="Folder" />
+            <div className="project">
+              <Icon name="Project" />
             </div>
             <div className="project-links">
               {github && (

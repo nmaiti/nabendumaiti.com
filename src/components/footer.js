@@ -96,7 +96,7 @@ const Footer = () => {
       </StyledSocialLinks>
 
       <StyledCredit tabindex="-1">
-      <div>(c) Nabendu Maiti,</div>
+      <div>Nabendu Maiti,</div>
         <a href="https://github.com/bchiang7/v4">
           <div>Base Theme Designed &amp; Brittany Chiang</div>
 
