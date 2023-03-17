@@ -105,6 +105,13 @@ const StyledProject = styled.li`
             margin-top: -4px;
           }
         }
+        &.blog {
+          svg {
+            width: 22px;
+            height: 22px;
+            margin-top: -4px;
+          }
+        }
 
         svg {
           width: 20px;
@@ -181,6 +188,7 @@ const Projects = () => {
               title
               tech
               github
+              blog
               external
             }
             html
@@ -213,7 +221,7 @@ const Projects = () => {
 
   const projectInner = node => {
     const { frontmatter, html } = node;
-    const { github, external, title, tech } = frontmatter;
+    const { github, external, blog, title, tech } = frontmatter;
 
     return (
       <div className="project-inner">
@@ -223,6 +231,7 @@ const Projects = () => {
               <Icon name="Project" />
             </div>
             <div className="project-links">
+
               {github && (
                 <a href={github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
                   <Icon name="GitHub" />
@@ -236,6 +245,16 @@ const Projects = () => {
                   target="_blank"
                   rel="noreferrer">
                   <Icon name="External" />
+                </a>
+              )}
+              {blog && (
+                <a
+                  href={blog}
+                  aria-label="Article Link"
+                  className="external"
+                  target="_blank"
+                  rel="noreferrer">
+                  <Icon name="Post" />
                 </a>
               )}
             </div>

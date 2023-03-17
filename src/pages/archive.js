@@ -174,7 +174,7 @@ const ArchivePage = ({ location, data }) => {
                     date,
                     github,
                     external,
-                    ios,
+                    blog,
                     android,
                     title,
                     tech,
@@ -182,7 +182,7 @@ const ArchivePage = ({ location, data }) => {
                   } = node.frontmatter;
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
-                      <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
+                      <td className="overline year"><p>{`${new Date(date).getFullYear()}`}</p></td>
 
                       <td className="title">{title}</td>
 
@@ -213,9 +213,9 @@ const ArchivePage = ({ location, data }) => {
                               <Icon name="GitHub" />
                             </a>
                           )}
-                          {ios && (
-                            <a href={ios} aria-label="Apple App Store Link">
-                              <Icon name="AppStore" />
+                          {blog && (
+                            <a href={blog} aria-label="Article Link">
+                              <Icon name="Post" />
                             </a>
                           )}
                           {android && (
@@ -256,7 +256,7 @@ export const pageQuery = graphql`
             tech
             github
             external
-            ios
+            blog
             android
             company
           }

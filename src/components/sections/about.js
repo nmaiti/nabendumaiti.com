@@ -18,20 +18,24 @@ const StyledAboutSection = styled.section`
     }
   }
 `;
+ //  grid-template-columns: repeat(4, minmax(180px, 500px));
+ //grid-template-columns: repeat(4, 1fr);
 const StyledText = styled.div`
   ul.skills-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(140px, 240px));
-    grid-gap: 0 15px;
+    grid-template-columns: repeat(auto-fit, minmax(160px,  max-content ));
+
+    
+    grid-gap: 0 10px;
     padding: 0;
-    margin: 20px 0 0 0;
+    margin: 5px 0 0 0;
     overflow: hidden;
     list-style: none;
 
     li {
       position: relative;
       margin-bottom: 8px;
-      padding-left: 20px;
+      padding-left: 16px;
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
 
@@ -125,8 +129,10 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skillsSW = ['C', 'Python', 'shellscript', 'Linux/VxWorks',  'OpenWrt', 'Git', 'JIRA', 'Docker/kubernets', 'Fuzzing', 'AWS', 'JavaScript (ES6+)', 'React', 'Flask' ];
-  const skillsHW = ['JTAGS', 'Intel', 'ESP-8266/32', 'RT5350', 'SDcard', 'I2C/SPI', 'PIR', 'Eagle CAD', 'ProteousCAD', 'AutoCAD Fusion'];
+  const skillsSW = ['C', 'Python', 'shellscript', 'Linux/VxWorks',  'SQL', 'OpenWrt', 'Cryptography', 'Git', 'JIRA', 'AFL', 'restler-fuzzer', 'Uboot', 'Docker/kubernets', 'Fuzzing', 'AWS', 'JavaScript (ES6+)', 'React', 'Flask' ];
+  const skillsHW = ['JTAGS', 'Intel', 'PIC', 'Optiga SE', 'Atinny85', 'ESP-8266/32', 'RT5350', 'SDcard', 'I2C/SPI', 'PIR', 'EagleCAD', 'ProteousCAD', 'AutoCAD Fusion360'];
+  const randomFacts = ['Love travel', 'Adventurerous sports', 'Love Gadgets', 'Stock Technical Analysis'];
+
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -155,7 +161,7 @@ const About = () => {
             </p>
 
             <p>Here are a few technologies I’ve worked on:</p>
-          </div>
+          </div> <p/>
           <p/>Software:
           <ul className="skills-list">
             {skillsSW && skillsSW.map((skill, i) => <li key={i}>{skill}</li>)}
@@ -163,6 +169,12 @@ const About = () => {
           <span>Hardware:</span>
           <ul className="skills-list">
             {skillsHW && skillsHW.map((skill, i) => <li key={i}>{skill}</li>)}
+          </ul>
+         
+          <p> </p>
+          <p>Other than work some Random Facts about Me:</p>
+          <ul className="skills-list">
+            {randomFacts && randomFacts.map((skill, i) => <li key={i}>{skill}</li>)}
           </ul>
         </StyledText>
 

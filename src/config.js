@@ -1,5 +1,5 @@
 module.exports = {
-  email: 'nbmaiti@gmail.com',
+  email: 'nbmaiti at gmail dot com',
 
   socialMedia: [
     {
@@ -30,11 +30,11 @@ module.exports = {
       url: '/#jobs',
     },
     {
-      name: 'Work',
+      name: 'Projects',
       url: '/#projects',
     },
     {
-      name: 'Posts',
+      name: 'Blog',
       url: '/blogs',
     },
     {

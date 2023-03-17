@@ -172,7 +172,9 @@ const BlogPage = ({ location, data }) => {
                     <header>
                       <div className="post__icon">
                         <IconPost />
+                        <span className="post__date">{formattedDate}</span>
                       </div>
+                      
                       <h5 className="post__title">
                         <Link to={slug}>{title}</Link>
                       </h5>
@@ -180,7 +182,7 @@ const BlogPage = ({ location, data }) => {
                     </header>
 
                     <footer>
-                      <span className="post__date">{formattedDate}</span>
+                      
                       <ul className="post__tags">
                         {tags.map((tag, i) => (
                           <li key={i}>
