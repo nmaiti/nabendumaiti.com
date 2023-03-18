@@ -13,14 +13,15 @@
   "license": "MIT",
   "browserslist": "> 0.25%, not dead",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "gatsby build ",
+    "develop": "gatsby develop --host 0.0.0.0 -p 8000",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve --host 0.0.0.0 -p 8000",
     "clean": "gatsby clean",
     "prepare": "husky install",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "deploy": "gatsby build && gh-pages -d public -b deploy"
   },
   "lint-staged": {
     "*.{js,css,json,md}": [
