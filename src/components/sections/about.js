@@ -21,8 +21,8 @@ const StyledAboutSection = styled.section`
 const StyledText = styled.div`
   ul.skills-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 200px));
-    grid-gap: 0 10px;
+    grid-template-columns: repeat(4, minmax(140px, 240px));
+    grid-gap: 0 15px;
     padding: 0;
     margin: 20px 0 0 0;
     overflow: hidden;
@@ -30,7 +30,7 @@ const StyledText = styled.div`
 
     li {
       position: relative;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       padding-left: 20px;
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
@@ -39,7 +39,7 @@ const StyledText = styled.div`
         content: '▹';
         position: absolute;
         left: 0;
-        color: var(--green);
+        color: var(--blue);
         font-size: var(--fz-sm);
         line-height: 12px;
       }
@@ -61,15 +61,15 @@ const StyledPic = styled.div`
     position: relative;
     width: 100%;
     border-radius: var(--border-radius);
-    background-color: var(--green);
+    background-color: var(--blue);
 
     &:hover,
     &:focus {
       outline: 0;
 
       &:after {
-        top: 15px;
-        left: 15px;
+        top: 12px;
+        left: 12px;
       }
 
       .img {
@@ -105,7 +105,7 @@ const StyledPic = styled.div`
     }
 
     &:after {
-      border: 2px solid var(--green);
+      border: 2px solid var(--blue);
       top: 20px;
       left: 20px;
       z-index: -1;
@@ -125,7 +125,8 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
+  const skillsSW = ['C', 'Python', 'shellscript', 'Linux/VxWorks',  'OpenWrt', 'Git', 'JIRA', 'Docker/kubernets', 'Fuzzing', 'AWS', 'JavaScript (ES6+)', 'React', 'Flask' ];
+  const skillsHW = ['JTAGS', 'Intel', 'ESP-8266/32', 'RT5350', 'SDcard', 'I2C/SPI', 'PIR', 'Eagle CAD', 'ProteousCAD', 'AutoCAD Fusion'];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,37 +136,33 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Brittany and I enjoy creating things that live on the internet. My
-              interest in web development started back in 2012 when I decided to try editing custom
-              Tumblr themes — turns out hacking together a custom reblog button taught me a lot
-              about HTML &amp; CSS!
+              Hello! My name is Nabendu Bikash Maiti and I am passionate about creating, experimenting, and developing software and hardware.
+              I grew interest in electronics long back in my school days (2000)
             </p>
 
             <p>
-              Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://us.mullenlowe.com/">an advertising agency</a>,{' '}
-              <a href="https://starry.com/">a start-up</a>,{' '}
-              <a href="https://www.apple.com/">a huge corporation</a>, and{' '}
-              <a href="https://scout.camd.northeastern.edu/">a student-led design studio</a>. My
-              main focus these days is building accessible, inclusive products and digital
-              experiences at <a href="https://upstatement.com/">Upstatement</a> for a variety of
-              clients.
+             Fast-forward to the present day, and I've had the privilege of gaining work experience at {' '}
+              <a href="https://www.intel.com/">Biggest Semiconductor manufacturer</a>, and{' '}
+              <a href="https://www.broadcom.com/">Network Giant</a>,{' '} and {' '}
+              <a href="https://www.capgemini.com/">IT Service company</a>,{' '}
+              <a href="https://global.abb/group/en">a renowed Automation giant</a>. 
+              Currently, my main focus is on building and developing platform software that is both convenient and secure for both OEMs and end-users.
             </p>
 
             <p>
-              I also recently{' '}
-              <a href="https://www.newline.co/courses/build-a-spotify-connected-app">
-                launched a course
-              </a>{' '}
-              that covers everything you need to build a web app with the Spotify API using Node
-              &amp; React.
+              I also recently{' '} started experimenting on cutting edge ML based fuzzing to ensure AI can fully utilized
+              for few Intel software products.
             </p>
 
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>Here are a few technologies I’ve worked on:</p>
           </div>
-
+          <p/>Software:
           <ul className="skills-list">
-            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
+            {skillsSW && skillsSW.map((skill, i) => <li key={i}>{skill}</li>)}
+          </ul>
+          <span>Hardware:</span>
+          <ul className="skills-list">
+            {skillsHW && skillsHW.map((skill, i) => <li key={i}>{skill}</li>)}
           </ul>
         </StyledText>
 
@@ -173,7 +170,7 @@ const About = () => {
           <div className="wrapper">
             <StaticImage
               className="img"
-              src="../../images/me.jpg"
+              src="../../images/avtar.jpg"
               width={500}
               quality={95}
               formats={['AUTO', 'WEBP', 'AVIF']}

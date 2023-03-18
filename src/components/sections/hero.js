@@ -19,7 +19,7 @@ const StyledHeroSection = styled.section`
 
   h1 {
     margin: 0 0 30px 4px;
-    color: var(--green);
+    color: var(--blue);
     font-family: var(--font-mono);
     font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
     font-weight: 400;
@@ -33,6 +33,13 @@ const StyledHeroSection = styled.section`
     margin-top: 5px;
     color: var(--slate);
     line-height: 0.9;
+  }
+  
+  h4 {
+    margin-top: 4px;
+    color: var(--slate);
+    line-height: 0.8;
+
   }
 
   p {
@@ -60,28 +67,25 @@ const Hero = () => {
   }, []);
 
   const one = <h1>Hi, my name is</h1>;
-  const two = <h2 className="big-heading">Brittany Chiang.</h2>;
-  const three = <h3 className="big-heading">I build things for the web.</h3>;
+  const two = <h2 className="big-heading">Nabendu Bikash Maiti.</h2>;
+  const three = <h3 className="medium-heading">I build, tinker both software and hardware.</h3>;
   const four = (
     <>
       <p>
-        I’m a software engineer specializing in building (and occasionally designing) exceptional
-        digital experiences. Currently, I’m focused on building accessible, human-centered products
-        at{' '}
-        <a href="https://upstatement.com/" target="_blank" rel="noreferrer">
-          Upstatement
-        </a>
-        .
+      I am a Senior Software Security Engineer, specializing in designing and implementing secure platform
+      software solutions. With a strong background in both hardware and software, My current focus is on platform security,
+      specifically on technologies like SGX and TPM, as well as identifying vulnerabilities through bug bounty programs.{' '}
       </p>
     </>
   );
   const five = (
     <a
       className="email-link"
-      href="https://www.newline.co/courses/build-a-spotify-connected-app"
+      href="mailto:nbnaiti@gmail.com?subject = Feedback&body = Message"
       target="_blank"
-      rel="noreferrer">
-      Check out my course!
+      rel="noreferrer"
+    >
+      Say hallo!
     </a>
   );
 

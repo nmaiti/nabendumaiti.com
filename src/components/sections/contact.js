@@ -16,7 +16,7 @@ const StyledContactSection = styled.section`
   .overline {
     display: block;
     margin-bottom: 20px;
-    color: var(--green);
+    color: var(--blue);
     font-family: var(--font-mono);
     font-size: var(--fz-md);
     font-weight: 400;
@@ -59,13 +59,12 @@ const Contact = () => {
 
       <h2 className="title">Get In Touch</h2>
 
-      <p>
-        Although I’m not currently looking for any new opportunities, my inbox is always open.
-        Whether you have a question or just want to say hi, I’ll try my best to get back to you!
-      </p>
+      <p>Although I'm not actively searching for new opportunities, 
+        I'm open to hearing about exciting and challenging opportunities that may be of interest to me.
+        Additionally, if you just want to say hello, please feel free to drop me a line and I'll do my best to respond.</p>
 
       <a className="email-link" href={`mailto:${email}`}>
-        Say Hello
+      Let's Connect
       </a>
     </StyledContactSection>
   );
