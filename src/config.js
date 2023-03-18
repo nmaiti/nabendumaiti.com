@@ -34,12 +34,12 @@ module.exports = {
       url: '/#projects',
     },
     {
-      name: 'Contact',
-      url: '/#contact',
-    },
-    {
       name: 'Posts',
       url: '/blogs',
+    },
+    {
+      name: 'Contact',
+      url: '/#contact',
     },
   ],
 
