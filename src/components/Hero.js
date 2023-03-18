@@ -1,11 +1,16 @@
 import React from 'react'
+import styled from 'styled-components';
 
-export const Hero = ({ highlight, subTitle, title, children, index }) => {
+const StyledHighlightContainer = styled.span`
+    color: var(--blue);
+`;
+
+export const PHero = ({ highlight, subTitle, title, children, index }) => {
   return (
     <header className={`hero ${index ? 'index' : ''}`}>
       {subTitle && (
         <div className="sub-title">
-          {highlight && <span className="highlight">{highlight}</span>}
+          {highlight && <StyledHighlightContainer>{highlight}</StyledHighlightContainer>}
           {subTitle}
         </div>
       )}

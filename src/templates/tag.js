@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 
 
 import { Posts } from '../components/Posts'
-import { Hero } from '../components/Hero'
+import { PHero } from '../components/Hero'
 import { SidebarLayout } from '../components/SidebarLayout'
 import { getSimplifiedPosts } from '../utils/helpers'
 
@@ -66,15 +66,11 @@ export default function TagTemplate({ data, pageContext }) {
   return (
     <div>
       <Layout>
-
+      <Helmet title={`Posts tagged: #${tag} `} />
         <StyledPostContainer>
 
-
-          <Helmet title={`Posts tagged: ${tag} `} />
-
-
           <SidebarLayout>
-            <Hero highlight={totalCount} subTitle={message} title={tag} />
+            <PHero highlight={totalCount} subTitle={message} title={tag} />
             <Posts data={simplifiedPosts} showYears />
           </SidebarLayout>
         </StyledPostContainer>

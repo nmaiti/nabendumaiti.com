@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 
 import { Posts } from '../components/Posts'
-import { Hero } from '../components/Hero'
+import { PHero } from '../components/Hero'
 import styled from 'styled-components';
 import { Layout } from '@components';
 import { SidebarLayout } from '../components/SidebarLayout'
@@ -66,16 +66,14 @@ export default function CategoryTemplate({ data, pageContext }) {
   return (
     <div>
       <Layout >
-
-      <StyledPostContainer>
         <Helmet title={`${category} `} />
+        <StyledPostContainer>
 
-
-        <SidebarLayout>
-          <Hero highlight={totalCount} subTitle={message} title={category} />
-          <Posts data={simplifiedPosts} showYears />
-        </SidebarLayout>
-      </StyledPostContainer>
+          <SidebarLayout>
+            <PHero highlight={totalCount} subTitle={message} title={category} />
+            <Posts data={simplifiedPosts} showYears />
+          </SidebarLayout>
+        </StyledPostContainer>
       </Layout>
 
     </div >

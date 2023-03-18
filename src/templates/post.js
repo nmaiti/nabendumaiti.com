@@ -55,46 +55,38 @@ const StyledPostContent = styled.div`
   }
 `;
 
-
-
 export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark
   const { tags, categories, title, date, thumbnail, comments_off } = post.frontmatter
-  
+
   return (
     <div>
       <Layout location={location}>
-        <Helmet title={title} />
 
+        <Helmet title={`${post.frontmatter.title} `} />
         <StyledPostContainer>
-
-          <Helmet title={`${post.frontmatter.title} `} />
-       
-            <div className="grid">
-              <div className="article-content">
-                <div className="post-header medium width">
-                  <h1>{title}</h1>
-                </div>
-                <div className="StyledPostContent">
-                  <div
-                    id={post.slug}
-                    className="post-content"
-                    dangerouslySetInnerHTML={{ __html: post.html }}
-                  />
-                </div>
-
-
-
+          <div className="grid">
+            <div className="article-content">
+              <div className="post-header medium width">
+                <h1>{title}</h1>
               </div>
-
-              <PostSidebar
-                date={date}
-                tags={tags}
-                categories={categories}
-                thumbnail={thumbnail}
-              />
+              <div className="StyledPostContent">
+                <div
+                  id={post.slug}
+                  className="post-content"
+                  dangerouslySetInnerHTML={{ __html: post.html }}
+                />
+              </div>
             </div>
-        
+
+            <PostSidebar
+              date={date}
+              tags={tags}
+              categories={categories}
+              thumbnail={thumbnail}
+            />
+          </div>
+
         </StyledPostContainer>
       </Layout>
     </div>
