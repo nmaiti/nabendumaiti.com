@@ -23,7 +23,7 @@ const StyledAboutSection = styled.section`
 const StyledText = styled.div`
   ul.skills-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px,  max-content ));
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr ));
 
     
     grid-gap: 0 10px;
@@ -31,11 +31,12 @@ const StyledText = styled.div`
     margin: 5px 0 0 0;
     overflow: hidden;
     list-style: none;
+    position: relative;
 
     li {
       position: relative;
       margin-bottom: 8px;
-      padding-left: 16px;
+      padding-left: 12px;
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
 

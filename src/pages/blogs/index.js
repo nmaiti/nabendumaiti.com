@@ -184,7 +184,7 @@ const BlogPage = ({ location, data }) => {
                     <footer>
                       
                       <ul className="post__tags">
-                        {tags.map((tag, i) => (
+                        {tags && tags.map((tag, i) => (
                           <li key={i}>
                             <Link to={`/blogs/tags/${kebabCase(tag)}/`} className="inline-link">
                               #{tag}
@@ -213,7 +213,7 @@ export default BlogPage;
 export const pageQuery = graphql`
   {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/posts/" }, frontmatter: { draft: { ne: true } } }
+      filter: { fileAbsolutePath: { regex: "/content/posts/" }, frontmatter: { status: { ne: "draft" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
@@ -225,6 +225,7 @@ export const pageQuery = graphql`
             date
             tags
             draft
+            categories
           }
           html
         }
