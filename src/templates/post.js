@@ -1,13 +1,18 @@
-import React from 'react';
-import { graphql, Link } from 'gatsby';
-import kebabCase from 'lodash/kebabCase';
+import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Layout } from '@components';
 
+
+import { PostSidebar } from '../components/PostSidebar'
+//import { Comments } from '../components/Comments'
+//import config from '../utils/config'
+
+
 const StyledPostContainer = styled.main`
-  max-width: 1000px;
+  max-width: 1700px;
 `;
 const StyledPostHeader = styled.header`
   margin-bottom: 50px;
@@ -50,65 +55,67 @@ const StyledPostContent = styled.div`
   }
 `;
 
-const PostTemplate = ({ data, location }) => {
-  const { frontmatter, html } = data.markdownRemark;
-  const { title, date, tags } = frontmatter;
 
+
+export default function PostTemplate({ data, location }) {
+  const post = data.markdownRemark
+  const { tags, categories, title, date, thumbnail, comments_off } = post.frontmatter
+  
   return (
-    <Layout location={location}>
-      <Helmet title={title} />
+    <div>
+      <Layout location={location}>
+        <Helmet title={title} />
 
-      <StyledPostContainer>
-        <span className="breadcrumb">
-          <span className="arrow">&larr;</span>
-          <Link to="/blogs">All memories</Link>
-        </span>
+        <StyledPostContainer>
 
-        <StyledPostHeader>
-          <h1 className="medium-heading">{title}</h1>
-          <p className="subtitle">
-            <time>
-              {new Date(date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-            <span>&nbsp;&mdash;&nbsp;</span>
-            {tags &&
-              tags.length > 0 &&
-              tags.map((tag, i) => (
-                <Link key={i} to={`/blogs/tags/${kebabCase(tag)}/`} className="tag">
-                  #{tag}
-                </Link>
-              ))}
-          </p>
-        </StyledPostHeader>
+          <Helmet title={`${post.frontmatter.title} `} />
+       
+            <div className="grid">
+              <div className="article-content">
+                <div className="post-header medium width">
+                  <h1>{title}</h1>
+                </div>
+                <div className="StyledPostContent">
+                  <div
+                    id={post.slug}
+                    className="post-content"
+                    dangerouslySetInnerHTML={{ __html: post.html }}
+                  />
+                </div>
 
-        <StyledPostContent dangerouslySetInnerHTML={{ __html: html }} />
-      </StyledPostContainer>
-    </Layout>
-  );
-};
 
-export default PostTemplate;
 
-PostTemplate.propTypes = {
-  data: PropTypes.object,
-  location: PropTypes.object,
-};
+              </div>
+
+              <PostSidebar
+                date={date}
+                tags={tags}
+                categories={categories}
+                thumbnail={thumbnail}
+              />
+            </div>
+        
+        </StyledPostContainer>
+      </Layout>
+    </div>
+  )
+}
+
+PostTemplate.Layout = Layout
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $path } }) {
+  query BlogPostBySlug($slug: String!) {
+    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
+        id
         title
         description
         date
         slug
+        categories
         tags
       }
     }
   }
-`;
+`

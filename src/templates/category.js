@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react'
 import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet';
+import Helmet from 'react-helmet'
 
 
 import { Posts } from '../components/Posts'
 import { Hero } from '../components/Hero'
+import styled from 'styled-components';
+import { Layout } from '@components';
 import { SidebarLayout } from '../components/SidebarLayout'
 import { getSimplifiedPosts } from '../utils/helpers'
 
-import styled from 'styled-components';
-import { Layout } from '@components';
 
 const StyledPostContainer = styled.main`
   max-width: 1700px;
@@ -55,53 +55,52 @@ const StyledPostContent = styled.div`
   }
 `;
 
-
-export default function TagTemplate({ data, pageContext }) {
-  const { tag } = pageContext
+export default function CategoryTemplate({ data, pageContext }) {
+  let { category } = pageContext
   const { totalCount } = data.allMarkdownRemark
   const posts = data.allMarkdownRemark.edges
   const simplifiedPosts = useMemo(() => getSimplifiedPosts(posts), [posts])
-  const message = totalCount === 1 ? ' post tagged:' : ' posts tagged:'
+  const message =
+    totalCount === 1 ? ' post categorized as:' : ' posts categorized as:'
 
   return (
     <div>
-      <Layout>
+      <Layout >
 
-        <StyledPostContainer>
-
-
-          <Helmet title={`Posts tagged: ${tag} `} />
+      <StyledPostContainer>
+        <Helmet title={`${category} `} />
 
 
-          <SidebarLayout>
-            <Hero highlight={totalCount} subTitle={message} title={tag} />
-            <Posts data={simplifiedPosts} showYears />
-          </SidebarLayout>
-        </StyledPostContainer>
+        <SidebarLayout>
+          <Hero highlight={totalCount} subTitle={message} title={category} />
+          <Posts data={simplifiedPosts} showYears />
+        </SidebarLayout>
+      </StyledPostContainer>
       </Layout>
 
-    </div>
+    </div >
   )
 }
 
-TagTemplate.Layout = Layout
+CategoryTemplate.Layout = Layout
 
 export const pageQuery = graphql`
-  query TagPage($tag: String) {
+  query CategoryPage($category: String) {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { categories: { in: [$category] } } }
     ) {
       totalCount
       edges {
         node {
           id
+
           frontmatter {
-            id
-            date
             title
-            tags
+            date
+            description
             slug
+            tags
             categories
           }
         }

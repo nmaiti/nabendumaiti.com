@@ -2,7 +2,7 @@ export function getSimplifiedPosts(posts, options = {}) {
   return posts.map((post) => ({
     id: post.node.id,
     date: post.node.frontmatter.date,
-    slug: post.node.fields.slug,
+    slug: post.node.frontmatter.slug,
     tags: post.node.frontmatter.tags,
     categories: post.node.frontmatter.categories,
     title: options.shortTitle
@@ -24,6 +24,7 @@ export function getTaxonomyFromPosts(posts, taxonomy) {
 }
 
 export function slugify(string) {
+
   return (
     string &&
     `${string}`

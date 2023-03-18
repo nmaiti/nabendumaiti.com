@@ -15,6 +15,10 @@ module.exports = {
       url: 'https://www.instagram.com/maitinabendu/',
     },
     {
+      name: 'Youtube',
+      url: 'https://www.youtube.com/@engineernabendu-vp5bq',
+    },
+    {
       name: 'Sandbox',
       url: 'https://codesandbox.io/u/nmaiti',
     },
@@ -34,12 +38,12 @@ module.exports = {
       url: '/#projects',
     },
     {
-      name: 'Blog',
-      url: '/blogs',
-    },
-    {
       name: 'Contact',
       url: '/#contact',
+    },
+    {
+      name: 'Blog',
+      url: '/blogs',
     },
   ],
 

@@ -12,6 +12,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const postTemplate = path.resolve(`src/templates/post.js`);
   const tagTemplate = path.resolve('src/templates/tag.js');
 
+  const blogPage = path.resolve('./src/templates/post.js')
+  const pagePage = path.resolve('./src/templates/page.js')
+  const tagPage = path.resolve('./src/templates/tag.js')
+  const categoryPage = path.resolve('./src/templates/category.js')
+
+
   const result = await graphql(`
     {
       postsRemark: allMarkdownRemark(
@@ -30,6 +36,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       tagsGroup: allMarkdownRemark(limit: 2000) {
         group(field: frontmatter___tags) {
           fieldValue
+          totalCount
+        }
+      }
+      categoriesGroup: allMarkdownRemark(limit: 2000) {
+        group(field: frontmatter___categories) {
+          fieldValue
+          totalCount
         }
       }
     }
@@ -40,17 +53,49 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
+  const all = result.data.postsRemark.edges
+ 
 
-  // Create post detail pages
+  const pages = all.filter((post) => post.node.frontmatter.template === 'page')
+   // Create post detail pages
   const posts = result.data.postsRemark.edges;
 
-  posts.forEach(({ node }) => {
+ // const posts = all.filter((post) => post.node.frontmatter.template === 'post')
+//  const pages = all.filter((post) => post.node.frontmatter.template === 'page')
+  const tagSet = new Set()
+  const categorySet = new Set()
+
+  // =====================================================================================
+  // Posts
+  // =====================================================================================
+
+  posts.forEach((post, i) => {
+    const previous = i === posts.length - 1 ? null : posts[i + 1].node
+    const next = i === 0 ? null : posts[i - 1].node
+
+    if (post.node.frontmatter.tags) {
+      post.node.frontmatter.tags.forEach((tag) => {
+        tagSet.add(tag)
+      })
+    }
+
+    if (post.node.frontmatter.categories) {
+      post.node.frontmatter.categories.forEach((category) => {
+        categorySet.add(category)
+      })
+    }
+
     createPage({
-      path: node.frontmatter.slug,
-      component: postTemplate,
-      context: {},
-    });
-  });
+      path: post.node.frontmatter.slug,
+      component: blogPage,
+      context: {
+        slug: post.node.frontmatter.slug,
+        previous,
+        next,
+      },
+    })
+  })
+
 
   // Extract tag data from query
   const tags = result.data.tagsGroup.group;
@@ -64,7 +109,39 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       },
     });
   });
+// =====================================================================================
+  // Tags
+  // =====================================================================================
+
+  const tagList = result.data.tagsGroup.group // Array.from(tagSet)
+  tagList.forEach((tag) => {
+    createPage({
+      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      component: tagPage,
+      context: {
+        tag:tag.fieldValue,
+      },
+    })
+  })
+  // =====================================================================================
+  // Categories
+  // =====================================================================================
+
+  const categoryList = result.data.categoriesGroup.group // Array.from(categorySet)
+  categoryList.forEach((category) => {
+    createPage({
+      path: `/categories/${_.kebabCase(category.fieldValue)}/`,
+      component: categoryPage,
+      context: {
+        category:category.fieldValue,
+      },
+    })
+  })
+
+  
 };
+
+
 
 // https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {

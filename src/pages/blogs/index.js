@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { graphql, Link } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
@@ -6,6 +6,12 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Layout } from '@components';
 import { IconPost } from '@components/icons';
+
+import { Posts } from '../../components/Posts'
+import { SidebarLayout } from '../../components/SidebarLayout'
+import React, { useMemo } from 'react'
+
+import { getSimplifiedPosts } from '../../utils/helpers'
 
 const StyledMainContainer = styled.main`
   & > header {
@@ -28,178 +34,28 @@ const StyledMainContainer = styled.main`
     margin-top: 20px;
   }
 `;
-const StyledGrid = styled.ul`
-  ${({ theme }) => theme.mixins.resetList};
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 15px;
-  margin-top: 50px;
-  position: relative;
 
-  @media (max-width: 1080px) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-`;
-const StyledPost = styled.li`
-  transition: var(--transition);
-  cursor: default;
-
-  @media (prefers-reduced-motion: no-preference) {
-    &:hover,
-    &:focus-within {
-      .post__inner {
-        transform: translateY(-7px);
-      }
-    }
-  }
-
-  a {
-    position: relative;
-    z-index: 1;
-  }
-
-  .post__inner {
-    ${({ theme }) => theme.mixins.boxShadow};
-    ${({ theme }) => theme.mixins.flexBetween};
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    height: 100%;
-    padding: 2rem 1.75rem;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    background-color: var(--light-navy);
-
-    header,
-    a {
-      width: 100%;
-    }
-  }
-
-  .post__icon {
-    ${({ theme }) => theme.mixins.flexBetween};
-    color: var(--blue);
-    margin-bottom: 30px;
-    margin-left: -5px;
-
-    svg {
-      width: 40px;
-      height: 40px;
-    }
-  }
-
-  .post__title {
-    margin: 0 0 10px;
-    color: var(--lightest-slate);
-    font-size: var(--fz-xxl);
-
-    a {
-      position: static;
-
-      &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        z-index: 0;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-      }
-    }
-  }
-
-  .post__desc {
-    color: var(--light-slate);
-    font-size: 17px;
-  }
-
-  .post__date {
-    color: var(--light-slate);
-    font-family: var(--font-mono);
-    font-size: var(--fz-xxs);
-    text-transform: uppercase;
-  }
-
-  ul.post__tags {
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
-    li {
-      color: var(--blue);
-      font-family: var(--font-mono);
-      font-size: var(--fz-xxs);
-      line-height: 1.75;
-
-      &:not(:last-of-type) {
-        margin-right: 15px;
-      }
-    }
-  }
-`;
-
+//   <Posts data={simplifiedPosts} showYears />
 const BlogPage = ({ location, data }) => {
-  const posts = data.allMarkdownRemark.edges;
+  const posts = data.allMarkdownRemark.edges
+  const simplifiedPosts = useMemo(() => getSimplifiedPosts(posts), [posts])
+  const title = 'Writing'
+  const description = 'Notes & tutorials'
 
   return (
-    <Layout location={location}>
-      <Helmet title="Blogs" />
-
-      <StyledMainContainer>
-        <header>
-          <h1 className="big-heading">Blogs</h1>
-          <p className="subtitle">
-            <Link to={`/blogs/tags/`} className="inline-link">
-                  view all blogs
-            </Link>
-          </p>
-        </header>
-
-        <StyledGrid>
-          {posts.length > 0 &&
-            posts.map(({ node }, i) => {
-              const { frontmatter } = node;
-              const { title, description, slug, date, tags } = frontmatter;
-              const formattedDate = new Date(date).toLocaleDateString();
-
-              return (
-                <StyledPost key={i}>
-                  <div className="post__inner">
-                    <header>
-                      <div className="post__icon">
-                        <IconPost />
-                        <span className="post__date">{formattedDate}</span>
-                      </div>
-                      
-                      <h5 className="post__title">
-                        <Link to={slug}>{title}</Link>
-                      </h5>
-                      <p className="post__desc">{description}</p>
-                    </header>
-
-                    <footer>
-                      
-                      <ul className="post__tags">
-                        {tags && tags.map((tag, i) => (
-                          <li key={i}>
-                            <Link to={`/blogs/tags/${kebabCase(tag)}/`} className="inline-link">
-                              #{tag}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </footer>
-                  </div>
-                </StyledPost>
-              );
-            })}
-        </StyledGrid>
-      </StyledMainContainer>
-    </Layout>
+    <div>
+      <Layout location={location}>
+        
+        <StyledMainContainer>
+          <SidebarLayout>
+            <header className="hero">
+              <h1>{title}</h1>
+            </header>
+            <Posts data={simplifiedPosts} showYears />
+          </SidebarLayout>
+        </StyledMainContainer>
+      </Layout>
+    </div>
   );
 };
 
@@ -211,7 +67,7 @@ BlogPage.propTypes = {
 export default BlogPage;
 
 export const pageQuery = graphql`
-  {
+query {
     allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/content/posts/" }, frontmatter: { status: { ne: "draft" } } }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -233,3 +89,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+//formattedDate: date(formatString: "MMMM DD, YYYY [at] hh:mm A [GMT]Z")

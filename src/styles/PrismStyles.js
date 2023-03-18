@@ -1,8 +1,10 @@
 import { css } from 'styled-components';
 
 const prismColors = {
-  bg: `#112340`,
-  lineHighlight: `#1d2d50`,
+  bg: `#282828`,
+  lineHighlight: `#1d2021`,
+  lineselectbg: `#7c6f64`,
+  lineselectfg: `#fbf1c7`,
   blue: `#5ccfe6`,
   purple: `#c3a6ff`,
   green: `#bae67e`,
@@ -22,7 +24,8 @@ const PrismStyles = css`
   */
   .gatsby-highlight {
     background-color: ${prismColors.bg};
-    color: ${prismColors.grey};
+    color: ${prismColors.variable};
+	
     border-radius: var(--border-radius);
     margin: 2em 0;
     padding: 1.25em;
@@ -45,6 +48,7 @@ const PrismStyles = css`
     hyphens: none;
   }
 
+  
   /**
   * Remove the default PrismJS theme background-color, border-radius, margin,
   * padding and overflow.
@@ -53,13 +57,16 @@ const PrismStyles = css`
   * 3. Adjust the position of the line numbers
   */
   .gatsby-highlight pre[class*='language-'] {
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
+	color: #fbf1c7; /* fg0 */
+
+	padding: 1em;
+	margin: 0.5em 0;
+	overflow: auto;
     overflow: initial;
     float: left; /* 1 */
     min-width: 100%; /* 2 */
-    padding-top: 2em;
+    padding-top: 1em;
+	padding-bottom: 0.2em;
   }
 
   /* File names */
@@ -84,7 +91,7 @@ const PrismStyles = css`
   .gatsby-highlight-code-line {
     display: block;
     background-color: ${prismColors.lineHighlight};
-    border-left: 2px solid var(--green);
+    border-left: 2px solid ${props => props.theme.higlight};
     padding-left: calc(1em + 2px);
     padding-right: 1em;
     margin-right: -1.35em;
@@ -93,8 +100,8 @@ const PrismStyles = css`
 
   /* Language badges */
   .gatsby-highlight pre[class*='language-']::before {
-    background: var(--lightest-navy);
-    color: var(--white);
+    background: #3c3836;
+    color: ${props => props.theme.white};
     font-size: var(--fz-xxs);
     font-family: var(--font-mono);
     line-height: 1.5;
@@ -136,6 +143,9 @@ const PrismStyles = css`
   .gatsby-highlight pre[class='language-bash']::before {
     content: 'bash';
   }
+  .gatsby-highlight pre[class='language-c']::before {
+    content: 'C';
+  }
   .gatsby-highlight pre[class='language-yaml']::before {
     content: 'yaml';
   }
@@ -156,72 +166,89 @@ const PrismStyles = css`
     content: 'flow';
   }
 
-  /* Prism Styles */
   .token {
     display: inline;
   }
+
+  /* Prism Styles */
   .token.comment,
-  .token.block-comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    color: ${prismColors.comment};
-  }
-  .token.punctuation {
-    color: ${prismColors.grey};
-  }
-  .token.namespace,
-  .token.deleted {
-    color: ${prismColors.red};
-  }
-  .token.function-name,
-  .token.function,
-  .token.class-name,
-  .token.constant,
-  .token.symbol {
-    color: ${prismColors.yellow};
-  }
-  .token.attr-name,
-  .token.operator,
-  .token.rule {
-    color: ${prismColors.orange};
-  }
-  .token.keyword,
-  .token.boolean,
-  .token.number,
-  .token.property {
-    color: ${prismColors.purple};
-  }
-  .token.tag,
-  .token.selector,
-  .token.important,
-  .token.atrule,
-  .token.builtin,
-  .token.entity,
-  .token.url {
-    color: ${prismColors.blue};
-  }
-  .token.string,
-  .token.char,
-  .token.attr-value,
-  .token.regex,
-  .token.variable,
-  .token.inserted {
-    color: ${prismColors.green};
-  }
-  .token.important,
-  .token.bold {
-    font-weight: 600;
-  }
-  .token.italic {
-    font-style: italic;
-  }
-  .token.entity {
-    cursor: help;
-  }
-  .namespace {
-    opacity: 0.7;
-  }
+.token.prolog,
+.token.cdata {
+	color: #a89984; /* fg4 / gray1 */
+}
+
+.token.delimiter,
+.token.boolean,
+.token.keyword,
+.token.selector,
+.token.important,
+.token.atrule {
+	color: #fb4934; /* red2 */
+}
+
+.token.operator,
+.token.punctuation,
+.token.attr-name {
+	color: #a89984; /* fg4 / gray1 */
+}
+
+.token.tag,
+.token.tag .punctuation,
+.token.doctype,
+.token.builtin {
+	color: #fabd2f; /* yellow2 */
+}
+
+.token.entity,
+.token.number,
+.token.symbol {
+	color: #d3869b; /* purple2 */
+}
+
+.token.property,
+.token.constant,
+.token.variable {
+	color: #fb4934; /* red2 */
+}
+
+.token.string,
+.token.char {
+	color: #b8bb26; /* green2 */
+}
+
+.token.attr-value,
+.token.attr-value .punctuation {
+	color: #a89984; /* fg4 / gray1 */
+}
+
+.token.url {
+	color: #b8bb26; /* green2 */
+	text-decoration: underline;
+}
+
+.token.function {
+	color: #fabd2f; /* yellow2 */
+}
+
+.token.regex {
+	background: #b8bb26; /* green2 */
+}
+
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.inserted {
+	background: #a89984; /* fg4 / gray1 */
+}
+
+.token.deleted {
+	background: #fb4934; /* red2 */
+}
 `;
 
 export default PrismStyles;

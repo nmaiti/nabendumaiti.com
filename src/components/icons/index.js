@@ -16,3 +16,4 @@ export { default as IconProject } from './project';
 export { default as IconSandbox } from './codesandbox';
 export { default as IconStar } from './star';
 export { default as IconTwitter } from './twitter';
+export { default as IconYoutube } from './youtube';
