@@ -307,8 +307,8 @@ const Featured = () => {
   const data = useStaticQuery(graphql`
     {
       featured: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/featured/" } }
-        sort: { fields: [frontmatter___date], order: ASC }
+        filter: {fileAbsolutePath: {regex: "/content/featured/"}}
+        sort: {frontmatter: {date: ASC}}
       ) {
         edges {
           node {

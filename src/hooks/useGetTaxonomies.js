@@ -4,14 +4,13 @@ export const useGetTaxonomies = () => {
   const data = useStaticQuery(graphql`
     query TaxonomyQuery {
       tags: allMarkdownRemark {
-        group(field: frontmatter___tags) {
+        group(field: {frontmatter: {tags: SELECT}}) {
           name: fieldValue
           totalCount
         }
       }
-
       categories: allMarkdownRemark {
-        group(field: frontmatter___categories) {
+        group(field: {frontmatter: {categories: SELECT}}) {
           name: fieldValue
           totalCount
         }

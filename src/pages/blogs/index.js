@@ -45,7 +45,7 @@ const BlogPage = ({ location, data }) => {
   return (
     <div>
       <Layout location={location}>
-        
+
         <StyledMainContainer>
           <SidebarLayout>
             <header className="hero">
@@ -68,26 +68,26 @@ export default BlogPage;
 
 export const pageQuery = graphql`
 query {
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/posts/" }, frontmatter: { status: { ne: "draft" } } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            description
-            slug
-            date
-            tags
-            draft
-            categories
-          }
-          html
+  allMarkdownRemark(
+    filter: {fileAbsolutePath: {regex: "/content/posts/"}, frontmatter: {status: {ne: "draft"}}}
+    sort: {frontmatter: {date: DESC}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          slug
+          date
+          tags
+          draft
+          categories
         }
+        html
       }
     }
   }
+}
 `;
 
 //formattedDate: date(formatString: "MMMM DD, YYYY [at] hh:mm A [GMT]Z")

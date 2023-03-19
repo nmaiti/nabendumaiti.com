@@ -85,14 +85,13 @@ CategoryTemplate.Layout = Layout
 export const pageQuery = graphql`
   query CategoryPage($category: String) {
     allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { categories: { in: [$category] } } }
+      sort: {frontmatter: {date: DESC}}
+      filter: {frontmatter: {categories: {in: [$category]}}}
     ) {
       totalCount
       edges {
         node {
           id
-
           frontmatter {
             title
             date
