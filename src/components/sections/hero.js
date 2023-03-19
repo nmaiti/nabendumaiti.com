@@ -72,9 +72,8 @@ const Hero = () => {
   const four = (
     <>
       <p>
-      I am a Senior Software Security Engineer, specializing in designing and implementing secure platform
-      software solutions. With a strong background in both hardware and software, My current focus is on platform security,
-      specifically on technologies like SGX and TPM, as well as identifying vulnerabilities through bug bounty programs.{' '}
+      I am a Senior Software Security Engineer, specializing in designing and implementing
+      secure platform software solutions. With a strong background in both hardware and software, my current focus is on platform security, specifically on technologies like SGX and TPM, as well as identifying vulnerabilities through bug bounty programs.{' '}
       </p>
     </>
   );

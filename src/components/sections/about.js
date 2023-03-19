@@ -132,7 +132,7 @@ const About = () => {
 
   const skillsSW = ['C', 'Python', 'shellscript', 'Linux/VxWorks',  'SQL', 'OpenWrt', 'Cryptography', 'Git', 'JIRA', 'AFL', 'restler-fuzzer', 'Uboot', 'Docker/kubernets', 'Fuzzing', 'AWS', 'JavaScript (ES6+)', 'React', 'Flask' ];
   const skillsHW = ['JTAGS', 'Intel', 'PIC', 'Optiga SE', 'Atinny85', 'ESP-8266/32', 'RT5350', 'SDcard', 'I2C/SPI', 'PIR', 'EagleCAD', 'ProteousCAD', 'AutoCAD Fusion360'];
-  const randomFacts = ['Love travel', 'Adventurerous sports', 'Love Gadgets', 'Stock Technical Analysis'];
+  const randomFacts = ['Love travel', 'Adventurers sports', 'Love Gadgets', 'Stock Technical Analysis'];
 
 
   return (
@@ -152,7 +152,7 @@ const About = () => {
               <a href="https://www.intel.com/">Biggest Semiconductor manufacturer</a>, and{' '}
               <a href="https://www.broadcom.com/">Network Giant</a>,{' '} and {' '}
               <a href="https://www.capgemini.com/">IT Service company</a>,{' '}
-              <a href="https://global.abb/group/en">a renowed Automation giant</a>. 
+              <a href="https://global.abb/group/en">a renowned  Automation giant</a>. 
               Currently, my main focus is on building and developing platform software that is both convenient and secure for both OEMs and end-users.
             </p>
 
