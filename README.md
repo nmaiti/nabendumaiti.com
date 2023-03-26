@@ -16,8 +16,11 @@
 
 ![demo](https://raw.githubusercontent.com/nmaiti/nabendumaiti.com/master/src/images/demo.png)
 
+![blogSnap](https://raw.githubusercontent.com/nmaiti/nabendumaiti.com/master/src/images/BlogDemo.png)
+
 ## 🛠 Package Updates
 Packages Updates for performance and security
+* Node : 18.14.x
 * Gatsby 5.7.0
 * React 18.2.0
 
