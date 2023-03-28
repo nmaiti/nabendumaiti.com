@@ -5,7 +5,7 @@ module.exports = {
     title: 'Nabendu Maiti',
     description:
       'Nabendu Maiti is a security software engineer who working on platform security and full stack.',
-    siteUrl: 'https://nbmaiti.fauxintellect.com', // No trailing slash allowed!
+    siteUrl: 'https://nabendumaiti.com', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder
     twitterUsername: '@enggnbm',
   },
