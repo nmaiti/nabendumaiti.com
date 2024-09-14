@@ -132,7 +132,7 @@ const About = () => {
 
   const skillsSW = ['C', 'Python', 'shellscript', 'Linux/VxWorks',  'SQL', 'OpenWrt', 'Cryptography', 'Git', 'JIRA', 'AFL', 'restler-fuzzer', 'Uboot', 'Docker/kubernets', 'Fuzzing', 'AWS', 'JavaScript (ES6+)', 'React', 'Flask' ];
   const skillsHW = ['JTAGS', 'Intel', 'PIC', 'Optiga SE', 'Atinny85', 'ESP-8266/32', 'RT5350', 'SDcard', 'I2C/SPI', 'PIR', 'EagleCAD', 'ProteousCAD', 'AutoCAD Fusion360'];
-  const randomFacts = ['Love travel', 'Adventurers sports', 'Love Gadgets', 'Stock Technical Analysis'];
+  const randomFacts = ['Certified Scuba Diver', 'Love travel', 'Adventurers sports', 'Love Gadgets', 'Stock Technical Analysis'];
 
 
   return (
